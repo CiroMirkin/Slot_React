@@ -1,29 +1,13 @@
-import seven from './assets/seven.png'
-import bar from './assets/bar.png'
-import bell from './assets/bell.png'
-import cherry from './assets/cherry.png'
-import grapes from './assets/grapes.png'
-import lemon from './assets/lemon.png'
-import watermelon from './assets/watermelon.png'
-
-const shapes = Object.freeze([
-  <img src={seven} className="shape" alt="seven shape" />,
-  <img src={bar} className="shape" alt="bar shape" />,
-  <img src={bell} className="shape" alt="bell shape" />,
-  <img src={cherry} className="shape" alt="cherry shape" />,
-  <img src={grapes} className="shape" alt="grapes shape" />,
-  <img src={lemon} className="shape" alt="lemon shape" />,
-  <img src={watermelon} className="shape" alt=" watermelon shape" />,
-])
-
 import './App.css'
-import { useState } from 'react'
-import { useEffect } from 'react'
+import { shapes } from './shapes'
+import { useEffect, useState } from 'react'
 
 function App() {
   const [shape1, setShape1] = useState(0)
   const [shape2, setShape2] = useState(1)
   const [shape3, setShape3] = useState(2)
+
+  const [times, setTimes] = useState(-1)
 
   const setShapes = () => {
     setShape1(Math.floor(Math.random() * shapes.length))
@@ -33,9 +17,11 @@ function App() {
 
   const getResultOfUserPlay = () => {
     if(shape1 === shape2 && shape2 === shape3) {
+      // The three shapes are the same
       return ('You win')
     }
     else if (shape1 === shape2 || shape2 === shape3 || shape1 === shape3 || shape1 === shape2) {
+      // Two shapes are the same
       return (50)
     }
     else {
@@ -44,12 +30,24 @@ function App() {
   }
 
   const handleClick = () => {
-    setShapes()
+    setTimes(5)
+
+    console.log('click')
   }
+
+  if(times > 0) {
+    console.log('decremento ', times)
+
+    const newTime = times - 1
+    setTimes(newTime)
+
+    setTimeout(setShapes, 1000)
+  } 
+  if(times === 0) getResultOfUserPlay()
 
   return (
     <>
-      <h2>{getResultOfUserPlay()}</h2>
+      <h2>{}</h2>
       <div className="slot">
         <span>{shapes[shape1]}</span>
         <span>{shapes[shape2]}</span>
