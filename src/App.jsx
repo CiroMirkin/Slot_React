@@ -1,6 +1,6 @@
 import './App.css'
 import { shapes } from './shapes'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 function App() {
   const [shape1, setShape1] = useState(0)
@@ -12,7 +12,7 @@ function App() {
 
   const [play, setPlay] = useState("")
 
-  const amountOfSpins = 10
+  const amountOfSpins = 11
 
   const setShapes = () => {
     console.log("change ", count)
@@ -49,12 +49,19 @@ function App() {
     setState(false)
     setCount(0)
   }
-  
-  setTimeout(() => {
+
+  useEffect(() => {
+
+    const timer = setTimeout(() => {
+
     if (state && count < amountOfSpins) {
       setShapes()
     }
-  }, 500)
+
+    }, 500)
+
+    return () => clearTimeout(timer)
+  }, [count, state]);
 
   return (
     <>
