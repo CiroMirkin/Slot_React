@@ -53,7 +53,11 @@ function Slot({ }) {
 
     return (
         <>
-            <h2>{playResult}</h2>
+            <h3 
+                className={`nes-text is-${playResult == 'you lost' ? 'error' : 'success'}`}
+            >
+                    { playResult }
+            </h3>
 
             <div className="slot">
                 <span className='slot__shape'>
@@ -67,7 +71,7 @@ function Slot({ }) {
                 </span>
             </div>
 
-            <button onClick={handleClick}>play</button>
+            <button type="button" onClick={handleClick} class="nes-btn is-success">Play</button>
         </>
     )
 }
