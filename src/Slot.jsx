@@ -9,10 +9,10 @@ const getResultOfUserPlay = (s1, s2, s3) => {
     }
     else if (s1 === s2 || s2 === s3 || s1 === s3 || s1 === s2) {
         // Two shapes are the same
-        return ('50')
+        return ('50 points')
     }
     else {
-        return ('you lost')
+        return ('You lost')
     }
 }
 

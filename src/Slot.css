@@ -11,16 +11,16 @@ h3 {
 
 .slot {
     max-width: 700px;
-    min-width: 450px;
+    min-width: 200px;
     height: 300px;
     margin: 4px 0 15px;
 
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 7px;
+    gap: 8px;
 
-    background: url(./assets/slot.png) no-repeat;
+    background: url(https://i.postimg.cc/m2Cv0XH1/slot.png) no-repeat;
     background-size: contain;
     background-position: center;
 }
