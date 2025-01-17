@@ -3,23 +3,30 @@ import { shapes } from './shapes'
 import { useState } from 'react'
 
 function App() {
-  const [shape1, setShape1] = useState([ 0, 1, 4, 3, 0 ])
-  const [shape2, setShape2] = useState([ 0, 1, 4, 3, 1 ])
-  const [shape3, setShape3] = useState([ 0, 1, 4, 3, 2 ])
+  const [shape1, setShape1] = useState(0)
+  const [shape2, setShape2] = useState(1)
+  const [shape3, setShape3] = useState(2)
+
+  const [count, setCount] = useState(0)
+  const [state, setState] = useState(false)
+
+  const [play, setPlay] = useState("")
+
+  const amountOfSpins = 10
 
   const setShapes = () => {
-    const shapes1 = Array(5).fill(0).map(s => Math.floor(Math.random() * shapes.length)) 
-    setShape1([...shapes1])
-    
-    const shapes2 = Array(5).fill(0).map(s => Math.floor(Math.random() * shapes.length)) 
-    setShape2([...shapes2])
+    console.log("change ", count)
 
-    const shapes3 = Array(5).fill(0).map(s => Math.floor(Math.random() * shapes.length)) 
-    setShape3([...shapes3])
+    setCount(count + 1)
+
+    setShape1(Math.floor(Math.random() * shapes.length))
+    setShape2(Math.floor(Math.random() * shapes.length))
+    setShape3(Math.floor(Math.random() * shapes.length))
+
   }
 
   const getResultOfUserPlay = (s1, s2, s3) => {
-    if(s1 === s2 && s2 === s3) {
+    if (s1 === s2 && s2 === s3) {
       // The three ss are the same
       return ('You win')
     }
@@ -32,30 +39,30 @@ function App() {
     }
   }
 
-  const [shapesIndex, setShapesIndex] = useState(0)
-
   const handleClick = () => {
-    setShapesIndex(0)
-    setShapes()
-
+    setState(true)
     console.log('click')
   }
 
-
-  setInterval(() => {
-    if(shapesIndex <= 5) {
-      const newShapesIndex = shapesIndex + 1
-      setShapesIndex(newShapesIndex)
+  if (count === amountOfSpins) {
+    setPlay(getResultOfUserPlay(shape1, shape2, shape3))
+    setState(false)
+    setCount(0)
+  }
+  
+  setTimeout(() => {
+    if (state && count < amountOfSpins) {
+      setShapes()
     }
-  }, 1000)
+  }, 500)
 
   return (
     <>
-      <h2>{ getResultOfUserPlay(shape1.at(-1), shape2.at(-1), shape3.at(-1)) }</h2>
+      <h2>{play}</h2>
       <div className="slot">
-        <span>{ shapes[shape1[shapesIndex]] }</span>
-        <span>{ shapes[shape2[shapesIndex]] }</span>
-        <span>{ shapes[shape3[shapesIndex]] }</span>
+        <span>{shapes[shape1]}</span>
+        <span>{shapes[shape2]}</span>
+        <span>{shapes[shape3]}</span>
       </div>
       <button onClick={handleClick}>play</button>
     </>
