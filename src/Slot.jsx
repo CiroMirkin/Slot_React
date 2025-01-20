@@ -2,18 +2,34 @@ import './Slot.css'
 import { shapes } from './shapes'
 import { useState, useEffect } from 'react'
 
+/**
+    @param s1 {number} Index of shape 1
+    @param s2 {number} Index of shape 2
+    @param s3 {number} Index of shape 3
+*/
 const getResultOfUserPlay = (s1, s2, s3) => {
+    
     if (s1 === s2 && s2 === s3) {
         // The three shapes are the same
-        return ('You win')
+        return shapes[s2].pointsThree
     }
-    else if (s1 === s2 || s2 === s3 || s1 === s3 || s1 === s2) {
+
+    const isThereTwoSeven = [s1, s2, s3].filter(s => s === 0).length == 2
+    if(isThereTwoSeven) {
+        return shapes[[s1, s2, s3].filter(s => s != 0).at(0)].pointsThree
+    }
+    
+    if (s1 === s2 || s2 === s3) {
+        if( [s1, s2 ,s3].includes(0)) {
+            // Two shapes are the same and there is a comodin
+            return shapes[s2].pointsThree
+        }
+        console.log(s2)
         // Two shapes are the same
-        return ('50 points')
+        return shapes[s2].pointsTwo
     }
-    else {
-        return ('You lost')
-    }
+    
+    return (0)
 }
 
 function Slot({ }) {
@@ -56,18 +72,18 @@ function Slot({ }) {
             <h3 
                 className={`nes-text is-${playResult == 'you lost' ? 'error' : 'success'}`}
             >
-                    { playResult }
+                { playResult }
             </h3>
 
             <div className="slot">
                 <span className='slot__shape'>
-                    {shapes[shapesIndex[0]]}
+                    {shapes[shapesIndex[0]].shape}
                 </span>
                 <span className='slot__shape'>
-                    {shapes[shapesIndex[1]]}
+                    {shapes[shapesIndex[1]].shape}
                 </span>
                 <span className='slot__shape'>
-                    {shapes[shapesIndex[2]]}
+                    {shapes[shapesIndex[2]].shape}
                 </span>
             </div>
 
