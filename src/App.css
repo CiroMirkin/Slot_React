@@ -1,13 +1,13 @@
 #root {
   width: 100%;
+  min-height: 100vh;
 
   display: grid;
   place-items: center;
+  align-items: baseline;
   padding: 1rem;
-  
-  font-family: "Pixelify Sans", serif;
-  font-optical-sizing: auto;
+
+  font-family: "Jersey 10", monospace;
   font-weight: 400;
-  font-style: normal;
   text-align: center;
 }

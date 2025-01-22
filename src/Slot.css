@@ -1,20 +1,43 @@
 #root {
-    display: grid;
-    place-items: center;
+    
 }
 
+header {
+    width: 100%;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0;
+}
+header .coins {
+    font-size: 2rem;
+}
 
-h3 {
-    padding: 0 10px;
-    background-color: #000000;
-    box-shadow: 0 .1em #000,0 -.1em #000,.1em 0 #000,-.1em 0 #000
+.slot-container {
+    display: grid;
+    place-items: center;
+    margin: 0 0 10px;
+}
+
+.play-result {
+    width: auto;
+    transform: translateY(43px);
+    padding: 0 2px;
+    margin: 0;
+    font-size: 25px;
+    color: #3ff63f;
 }
 
 .slot {
     max-width: 700px;
     min-width: 200px;
     height: 300px;
-    margin: 4px 0 15px;
+    margin: 0 0 15px;
 
     display: flex;
     justify-content: center;
@@ -37,4 +60,10 @@ h3 {
     width: 100%;
     height: auto;
     object-fit: contain;
+}
+.slot-container button {
+    width: 180px;
+    padding: 0;
+    font-size: 2rem;
+    color: #000 !important;
 }
