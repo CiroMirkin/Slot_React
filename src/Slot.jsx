@@ -105,13 +105,14 @@ function Slot({ }) {
                     { shapes[shapesIndex[2]].shape }
                 </span>
             </div>
-
+        </div>
+        <footer>
             <button
                 type="button"
                 onClick={ handleClick }
                 className="nes-btn is-success"
             >Play</button>
-        </div>
+        </footer>
         </>
     )
 }

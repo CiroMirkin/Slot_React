@@ -1,9 +1,13 @@
-#root {
-    
+:root {
+    min-height: 100dvh; 
+    display: grid;
+    place-items: center;
+    grid-template-rows: auto 1fr auto; 
 }
 
 header {
-    width: 100%;
+    min-width: 320px;
+    max-width: 800px;
     padding: 0 20px;
     display: flex;
     justify-content: space-between;
@@ -15,6 +19,7 @@ header h1 {
     margin: 0;
 }
 header .coins {
+    margin: 0;
     font-size: 2rem;
 }
 
